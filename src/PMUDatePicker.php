@@ -5,6 +5,7 @@ namespace gudron\datepicker;
 use yii\db\ActiveRecord;
 use yii\helpers\Html;
 use yii\helpers\Json;
+use yii\web\JsExpression;
 use yii\widgets\InputWidget;
 
 class PMUDatePicker extends InputWidget
@@ -55,7 +56,7 @@ class PMUDatePicker extends InputWidget
             }
 
             if(!isset($this->clientOptions['change'])) {
-                $this->clientOptions['change'] = "function(e){jQuery('#$id').trigger('change')});";
+                $this->clientOptions['change'] = new JsExpression("function(e){jQuery('#$id').trigger('change')}");
             }
         }
 
