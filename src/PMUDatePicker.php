@@ -11,7 +11,9 @@ use yii\widgets\InputWidget;
 class PMUDatePicker extends InputWidget
 {
 
-    public $clientOptions = [];
+    public $clientOptions = [
+        'hide_on_select' => true
+    ];
 
     /**
      * @inheritdoc
