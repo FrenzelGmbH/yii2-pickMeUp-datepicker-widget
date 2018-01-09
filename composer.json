@@ -26,7 +26,7 @@
     ],
     "require": {
         "yiisoft/yii2": "~2.0.0",
-        "bower-asset/pickmeup": "3.0.11",
+        "bower-asset/pickmeup": "3.0.11"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*"
