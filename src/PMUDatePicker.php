@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\web\JsExpression;
 use yii\widgets\InputWidget;
+use yii\web\View;
 
 class PMUDatePicker extends InputWidget
 {
