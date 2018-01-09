@@ -71,27 +71,26 @@ class PMUDatePicker extends InputWidget
      */
     public function registerClientScript()
     {
-        $js = [];
-      
-      	$js[] = "pickmeup.defaults.locales['" . \Yii::$app->language . "'] = " . Json::encode(require(__DIR__ . '/locales/' . \Yii::$app->language . '/locale.php'));
+        $js = [];           
       
         $id = $this->options['id'];
         $view = $this->getView();
 
         PMUDatePickerAsset::register($view);
       
+      	$js[] = "pickmeup.defaults.locales['" . \Yii::$app->language . "'] = " . Json::encode(require(__DIR__ . '/locales/' . \Yii::$app->language . '/locale.php'));
+      
+      	$options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '';
+        $js[] = "pickmeup('#$id',$options);";
+      
         $this->clientOptions['locale'] = \Yii::$app->language;        
 
         if(!isset($this->clientOptions['change'])) {
-        	$this->clientOptions['change'] = new JsExpression("element.addEventListener('pickmeup-change', function (e) {
+        	$this->clientOptions['change'] = new JsExpression("jQuery('#$id').addEventListener('pickmeup-change', function (e) {
     console.log(e.detail.formatted_date); // New date according to current format
     console.log(e.detail.date);           // New date as Date object
 })");
         }
-
-        $options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '';
-      
-        $js[] = "pickmeup('#$id',$options);";
 
         $view->registerJs(implode("\n", $js),View::POS_READY);
     }
