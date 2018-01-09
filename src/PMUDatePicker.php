@@ -23,7 +23,7 @@ class PMUDatePicker extends InputWidget
     * If a value is null, the corresponding attribute will not be rendered.
     */
     public $options = [
-        'class' => 'pickmeup',
+        'class' => 'pmufancy',
     ];
 
     /**
@@ -38,7 +38,7 @@ class PMUDatePicker extends InputWidget
       
       	//checks for the element class
         if (!isset($this->options['class'])) {
-            $this->options['class'] = 'pickmeup';
+            $this->options['class'] = 'pmufancy';
         }
       
          //checks for the element format
