@@ -15,7 +15,7 @@ class PMUDatePicker extends InputWidget
      * @var array clientOptions the HTML attributes for the widget container tag.
      */
     public $clientOptions = [
-        'hide_on_select' => true
+        'hide_on_select' => false
     ];
   
   	/**
