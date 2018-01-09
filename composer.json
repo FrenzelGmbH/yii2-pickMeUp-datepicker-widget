@@ -13,6 +13,11 @@
     ],
     "license": "BSD-3-Clause",
     "authors": [
+      	{
+            "name": "Philipp Frenzel",
+            "email": "philipp@frenzel.net",
+            "role": "Developer"
+        },
         {
             "name": "Alex V Kotelnikov",
             "email": "iam@gudron.me",
@@ -20,7 +25,8 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "~2.0.0"
+        "yiisoft/yii2": "~2.0.0",
+        "bower-asset/pickmeup": "3.0.11",
     },
     "require-dev": {
         "phpunit/phpunit": "4.*"
