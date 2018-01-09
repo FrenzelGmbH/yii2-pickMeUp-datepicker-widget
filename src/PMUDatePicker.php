@@ -91,7 +91,7 @@ class PMUDatePicker extends InputWidget
 
         $options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '';
 
-        $js[] = "pickmeup('$id',$options);";
+        $js[] = "pickmeup('#$id',$options);";
 
         $view->registerJs(implode("\n", $js),View::POS_READY);
     }
