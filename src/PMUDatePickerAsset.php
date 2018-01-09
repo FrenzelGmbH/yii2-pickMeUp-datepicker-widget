@@ -6,17 +6,47 @@ use yii\web\AssetBundle;
 
 class PMUDatePickerAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/gudron/yii2-pickMeUp-datepicker-widget/src/assets';
+    /**
+     * [$sourcePath description]
+     * @var string
+     */
+    public $sourcePath = '@bower/pickmeup';
+
+    /**
+     * [$autoGenerate description]
+     * @var boolean
+     */
+    public $autoGenerate = true;
+    
+    /**
+     * [$css description]
+     * @var array
+     */
+    public $css = [
+        'css/pickmeup.css',
+    ];
+
+    /**
+     * [$js description]
+     * @var array
+     */
+    public $js = [
+        'js/pickmeup.js',
+      	'js/js.pickmeup.twitter-bootstrap.js',
+    ];
+    
+    /**
+     * [$depends description]
+     * @var array
+     */
+    public $depends = [
+    ];
 
     /**
      * @inheritdoc
      */
-    public function init()
+    public function registerAssetFiles($view)
     {
-        $this->css[] = YII_DEBUG ? 'css/pickmeup.css' : 'css/pickmeup.min.min.css';
-        $this->js[] = YII_DEBUG ? 'js/jquery.pickmeup.js' : 'js/jquery.pickmeup.min.min.js';
-
-        parent::init();
+        parent::registerAssetFiles($view);
     }
-
-} 
+}
