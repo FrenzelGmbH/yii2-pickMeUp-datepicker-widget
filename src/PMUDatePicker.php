@@ -93,9 +93,9 @@ class PMUDatePicker extends InputWidget
         $js[] = "pickmeup('#$id',$options);";
       	
         if(!isset($this->jsHandler['change'])) {
-        	$js[] = new JsExpression("jQuery('#$id').addEventListener('pickmeup-change', function (e) {
-    console.log(e.detail.formatted_date); // New date according to current format
-    console.log(e.detail.date);           // New date as Date object
+        	$js[] = new JsExpression("$('#$id').on('pickmeup-change', function (e) {
+  console.log(e.detail.formatted_date); // New date according to current format
+  console.log(e.detail.date); // New date as Date object
 })");
         }
                    
