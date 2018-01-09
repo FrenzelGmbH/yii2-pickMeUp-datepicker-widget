@@ -18,6 +18,12 @@ class PMUDatePicker extends InputWidget
     ];
   
   	/**
+    * @var array jsHandler for the different elements
+    */
+  	public $jsHandler = [
+    ];
+  
+  	/**
     * @var array options the HTML attributes (name-value pairs) for the field container tag.
     * The values will be HTML-encoded using [[Html::encode()]].
     * If a value is null, the corresponding attribute will not be rendered.
@@ -80,18 +86,18 @@ class PMUDatePicker extends InputWidget
         // setting the correct locale (globaly)
       	$js[] = "pickmeup.defaults.locales['" . \Yii::$app->language . "'] = " . Json::encode(require(__DIR__ . '/locales/' . \Yii::$app->language . '/locale.php'));
       	
-        $this->clientOptions['locale'] = \Yii::$app->language;   
+        $this->clientOptions['locale'] = \Yii::$app->language;               	
       
-      	if(!isset($this->clientOptions['change'])) {
-        	$this->clientOptions['change'] = new JsExpression("#$id.addEventListener('pickmeup-change', function (e) {
+      	$options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '';
+      
+        $js[] = "pickmeup('#$id',$options);";
+      	
+        if(!isset($this->jsHandler['change'])) {
+        	$js[] = new JsExpression("#$id.addEventListener('pickmeup-change', function (e) {
     console.log(e.detail.formatted_date); // New date according to current format
     console.log(e.detail.date);           // New date as Date object
 })");
         }
-      
-      	$options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '';           
-      
-        $js[] = "pickmeup('#$id',$options);";
                    
         $view->registerJs(implode("\n", $js),View::POS_READY);
     }
