@@ -55,11 +55,14 @@ class PMUDatePicker extends InputWidget
      */
     public function run()
     {
-        $input = $this->hasModel()
+        /*$input = $this->hasModel()
             ? Html::activeTextInput($this->model, $this->attribute, $this->options)
             : Html::textInput($this->name, $this->value, $this->options);
+        */
 
-        echo $input;
+      	echo Html::beginTag('div', $this->options) . "\n";
+        echo Html::endTag('div')."\n";
+      
         $this->registerClientScript();
     }
 
