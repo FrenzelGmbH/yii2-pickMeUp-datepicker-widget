@@ -32,7 +32,7 @@ class PMUDatePickerAsset extends AssetBundle
      */
     public $js = [
         'js/pickmeup.js',
-      	'js/js.pickmeup.twitter-bootstrap.js',
+      	'js/jquery.pickmeup.twitter-bootstrap.js',
     ];
     
     /**
