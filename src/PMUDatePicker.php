@@ -11,7 +11,9 @@ use yii\web\View;
 
 class PMUDatePicker extends InputWidget
 {
-
+	 /**
+     * @var array clientOptions the HTML attributes for the widget container tag.
+     */
     public $clientOptions = [
         'hide_on_select' => true
     ];
@@ -21,8 +23,16 @@ class PMUDatePicker extends InputWidget
      */
     public function init()
     {
-        $this->clientOptions['format'] = 'Y-m-d';
-
+        //checks for the element id
+        if (!isset($this->options['id'])) {
+            $this->options['id'] = $this->getId();
+        }
+      
+         //checks for the element format
+        if (!isset($this->clientOptions['format'])) {
+            $this->clientOptions['format'] = 'Y-m-d';
+        }
+        
         parent::init();
     }
 
@@ -45,13 +55,12 @@ class PMUDatePicker extends InputWidget
     public function registerClientScript()
     {
         $js = [];
+      
+        $id = $this->options['id'];
         $view = $this->getView();
 
         PMUDatePickerAsset::register($view);
-
-        $id = $this->options['id'];
-        $selector = ";jQuery('#$id')";
-
+      
         if(!empty($this->clientOptions)) {
             // set locales
             if(!isset($this->clientOptions['locale'])) {
@@ -65,7 +74,7 @@ class PMUDatePicker extends InputWidget
 
         $options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '';
 
-        $js[] = "$selector.pickmeup($options);";
+        $js[] = "pickmeup('$id',$options);";
 
         $view->registerJs(implode("\n", $js),View::POS_READY);
     }
