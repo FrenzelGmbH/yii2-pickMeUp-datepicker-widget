@@ -17,6 +17,15 @@ class PMUDatePicker extends InputWidget
     public $clientOptions = [
         'hide_on_select' => true
     ];
+  
+  	/**
+    * @var array options the HTML attributes (name-value pairs) for the field container tag.
+    * The values will be HTML-encoded using [[Html::encode()]].
+    * If a value is null, the corresponding attribute will not be rendered.
+    */
+    public $options = [
+        'class' => 'pickmeup',
+    ];
 
     /**
      * @inheritdoc
@@ -26,6 +35,11 @@ class PMUDatePicker extends InputWidget
         //checks for the element id
         if (!isset($this->options['id'])) {
             $this->options['id'] = $this->getId();
+        }
+      
+      	//checks for the element class
+        if (!isset($this->options['class'])) {
+            $this->options['class'] = 'pickmeup';
         }
       
          //checks for the element format
