@@ -97,6 +97,8 @@ class PMUDatePicker extends InputWidget
   console.log(e.detail.formatted_date); // New date according to current format
   console.log(e.detail.date); // New date as Date object
 })");
+        }else{
+        	$js[] = $this->jsHandler['change'];
         }
                    
         $view->registerJs(implode("\n", $js),View::POS_READY);
