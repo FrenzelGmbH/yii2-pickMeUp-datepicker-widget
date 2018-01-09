@@ -78,20 +78,22 @@ class PMUDatePicker extends InputWidget
 
         PMUDatePickerAsset::register($view);
       
+        // setting the correct locale (globaly)
       	$js[] = "pickmeup.defaults.locales['" . \Yii::$app->language . "'] = " . Json::encode(require(__DIR__ . '/locales/' . \Yii::$app->language . '/locale.php'));
+      	
+        $this->clientOptions['locale'] = \Yii::$app->language;   
       
       	$options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '';
-        $js[] = "pickmeup('#$id',$options);";
       
-        $this->clientOptions['locale'] = \Yii::$app->language;        
-
         if(!isset($this->clientOptions['change'])) {
         	$this->clientOptions['change'] = new JsExpression("jQuery('#$id').addEventListener('pickmeup-change', function (e) {
     console.log(e.detail.formatted_date); // New date according to current format
     console.log(e.detail.date);           // New date as Date object
 })");
         }
-
+      
+        $js[] = "pickmeup('#$id',$options);";
+                   
         $view->registerJs(implode("\n", $js),View::POS_READY);
     }
 }
