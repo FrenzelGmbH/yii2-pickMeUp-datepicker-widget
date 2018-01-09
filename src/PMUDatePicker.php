@@ -66,6 +66,6 @@ class PMUDatePicker extends InputWidget
 
         $js[] = "$selector.pickmeup($options);";
 
-        $view->registerJs(implode("\n", $js));
+        $view->registerJs(implode("\n", $js),View::POS_READY);
     }
-} 
+}
