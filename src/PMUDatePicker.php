@@ -73,24 +73,21 @@ class PMUDatePicker extends InputWidget
     {
         $js = [];
       
+      	$js[] = "pickmeup.defaults.locales['" . \Yii::$app->language . "'] = " . Json::encode(require(__DIR__ . '/locales/' . \Yii::$app->language . '/locale.php'));
+      
         $id = $this->options['id'];
         $view = $this->getView();
 
         PMUDatePickerAsset::register($view);
       
-        if(!empty($this->clientOptions)) {
-            // set locales
-            if(!isset($this->clientOptions['locale'])) {
-                $this->clientOptions['locale'] = require(__DIR__ . '/locales/' . \Yii::$app->language . '/locale.php');
-            }
+        $this->clientOptions['locale'] = \Yii::$app->language;        
 
-            if(!isset($this->clientOptions['change'])) {
-                $this->clientOptions['change'] = new JsExpression("function(e){jQuery('#$id').trigger('change')}");
-            }
+        if(!isset($this->clientOptions['change'])) {
+        	$this->clientOptions['change'] = new JsExpression("function(e){jQuery('#$id').trigger('change')}");
         }
 
         $options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '';
-
+      
         $js[] = "pickmeup('#$id',$options);";
 
         $view->registerJs(implode("\n", $js),View::POS_READY);
