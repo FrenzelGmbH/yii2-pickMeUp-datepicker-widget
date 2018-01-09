@@ -83,7 +83,10 @@ class PMUDatePicker extends InputWidget
         $this->clientOptions['locale'] = \Yii::$app->language;        
 
         if(!isset($this->clientOptions['change'])) {
-        	$this->clientOptions['change'] = new JsExpression("function(e){jQuery('#$id').trigger('change')}");
+        	$this->clientOptions['change'] = new JsExpression("element.addEventListener('pickmeup-change', function (e) {
+    console.log(e.detail.formatted_date); // New date according to current format
+    console.log(e.detail.date);           // New date as Date object
+})");
         }
 
         $options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '';
