@@ -24,6 +24,11 @@ class PMUDatePicker extends InputWidget
     ];
   
   	/**
+    * style like bootstrap
+    */
+  	public $bsLookNFeel = true;
+  
+  	/**
     * @var array options the HTML attributes (name-value pairs) for the field container tag.
     * The values will be HTML-encoded using [[Html::encode()]].
     * If a value is null, the corresponding attribute will not be rendered.
@@ -99,6 +104,10 @@ class PMUDatePicker extends InputWidget
 })");
         }else{
         	$js[] = $this->jsHandler['change'];
+        }
+      
+      	if($this->bsLookNFeel){
+      		$js[] = "$('#$id').pickmeup_twitter_bootstrap();";
         }
                    
         $view->registerJs(implode("\n", $js),View::POS_READY);
