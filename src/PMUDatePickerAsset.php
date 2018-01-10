@@ -40,6 +40,7 @@ class PMUDatePickerAsset extends AssetBundle
      * @var array
      */
     public $depends = [
+      	'yii\web\JqueryAsset'
     ];
 
     /**
